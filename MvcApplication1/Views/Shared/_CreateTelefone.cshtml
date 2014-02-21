@@ -1,0 +1,31 @@
+﻿@model MvcApplication1.Models.Usuario
+
+@{
+    Layout = null;
+}
+
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
+
+@if (Model != null)
+{
+    <fieldset>
+        <legend>Telefone</legend>
+        @foreach (var item in Model.Telefone)
+        {
+        <div class="editor-label">
+            @Html.LabelFor(model => item.Numero)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => item.Tipo)
+        </div>
+        }
+
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

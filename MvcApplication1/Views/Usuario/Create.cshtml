@@ -1,0 +1,103 @@
+﻿@model MvcApplication1.ViewModels.UsuarioViewModel
+
+@{
+    ViewBag.Title = "Create";
+    
+}
+
+
+<script type="text/javascript">
+    function addEndereco() {
+
+        var numero = $(".num-Telefone").val();
+        var tipo = $(".tipo-Telefone").val();
+
+        var dados = $("#GridEndereco").append(numero + '<br />' + tipo);
+
+
+        $("#GridEndereco").load('@Url.Action("Create", "Telefone")',
+            {
+                Dados: dados
+            });
+
+
+        var teste = dados.html();
+
+
+        var ab = teste;
+    }
+</script>
+<br />
+
+
+<h2>Create</h2>
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Usuario</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Nome)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Endereco)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Endereco)
+            @Html.ValidationMessageFor(model => model.Endereco)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Idade)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Idade)
+            @Html.ValidationMessageFor(model => model.Idade)
+        </div>
+    </fieldset>
+       
+
+   <fieldset>
+       <legend>Telefone</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Numero, new { @class = "num-Telefone" })
+            @Html.ValidationMessageFor(model => model.Numero)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tipo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Tipo, new { @class = "tipo-Telefone" })
+            @Html.ValidationMessageFor(model => model.Tipo)
+        </div>
+
+        <input id="btn" type="button" value="Adicionar" onclick="addEndereco()" />
+
+        <br />
+
+       <div style="float:right" id="GridEndereco">@Html.Partial("_CreateTelefone", Model)</div>  
+   </fieldset>    
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

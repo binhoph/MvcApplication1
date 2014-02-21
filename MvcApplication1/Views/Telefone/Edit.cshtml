@@ -1,0 +1,70 @@
+﻿@model MvcApplication1.Models.Telefone
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Telefone</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Numero)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Numero)
+            @Html.ValidationMessageFor(model => model.Numero)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Residencial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Residencial)
+            @Html.ValidationMessageFor(model => model.Residencial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comercial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comercial)
+            @Html.ValidationMessageFor(model => model.Comercial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Celular)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Celular)
+            @Html.ValidationMessageFor(model => model.Celular)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idUsuario, "Usuario")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idUsuario", String.Empty)
+            @Html.ValidationMessageFor(model => model.idUsuario)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
